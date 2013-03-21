@@ -3,13 +3,22 @@ require_relative 'test_helper'
 class PerfectaTest < MiniTest::Unit::TestCase
 
   describe 'Perfecta client' do
-    it 'is initialized with an email and password' do
-      client = Perfecta::Client.new do |c|
-        c.email = 'email'
+
+    before do
+      @client = Perfecta::Client.new do |c|
+        c.email = 'email@ddress'
         c.password = 'password'
       end
-
-      client.must_be_instance_of Perfecta::Client
     end
+
+    it 'is initialized with an email and password' do
+      @client.must_be_instance_of Perfecta::Client
+    end
+
+    it "sets the email and password vars" do
+      @client.email.must_equal 'email@ddress'
+      @client.password.must_equal 'password'
+    end
+
   end
 end
