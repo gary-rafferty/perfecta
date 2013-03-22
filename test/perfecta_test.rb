@@ -5,6 +5,11 @@ class PerfectaTest < MiniTest::Unit::TestCase
   describe 'Perfecta client' do
 
     before do
+      Perfecta::Client
+        .any_instance
+        .stubs(:exchange_credentials_for_token)
+        .returns('token')
+
       @client = Perfecta::Client.new do |c|
         c.email = 'email@ddress'
         c.password = 'password'
@@ -20,5 +25,9 @@ class PerfectaTest < MiniTest::Unit::TestCase
       @client.password.must_equal 'password'
     end
 
+    it "should authenticate and set the token" do
+      @client.token.wont_be_nil
+      @client.token.must_equal 'token'
+    end
   end
 end
