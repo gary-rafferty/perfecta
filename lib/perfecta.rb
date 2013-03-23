@@ -1,4 +1,6 @@
 require "perfecta/version"
+require "perfecta/api_resource"
+require "perfecta/campaign_report"
 require "rest-client"
 require "json"
 
@@ -12,6 +14,19 @@ module Perfecta
     def initialize &block
       yield self if block_given?
       @token = exchange_credentials_for_token
+    end
+
+    def campaign_reports
+      url = "#{BASE_API_PATH}/reports/campaign_report"
+      resp =  JSON.parse(RestClient.get(url, {Authorization: @token}))
+
+      retval = []
+      resp['report'].each do |report_data|
+        report = CampaignReport.new report_data
+        retval << report
+      end
+
+      retval
     end
 
     private 
