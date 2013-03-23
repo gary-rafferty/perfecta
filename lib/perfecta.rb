@@ -2,6 +2,7 @@ require "perfecta/version"
 require "perfecta/api_resource"
 require "perfecta/campaign_report"
 require "perfecta/ad_report"
+require "perfecta/conversion_report"
 require "rest-client"
 require "json"
 
@@ -37,6 +38,19 @@ module Perfecta
       retval = []
       resp['report'].each do |report_data|
         report = AdReport.new report_data
+        retval << report
+      end
+
+      retval
+    end
+
+    def conversion_reports
+      url = "#{BASE_API_PATH}/reports/conversion_report"
+      resp =  JSON.parse(RestClient.get(url, {Authorization: @token}))
+
+      retval = []
+      resp['report'].each do |report_data|
+        report = ConversionReport.new report_data
         retval << report
       end
 
