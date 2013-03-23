@@ -1,6 +1,7 @@
 # Perfecta
 
-TODO: Write a gem description
+Ruby client for the Perfect Audience [reporting
+api](https://www.perfectaudience.com/docs#data_api_autoopen)
 
 ## Installation
 
@@ -18,7 +19,37 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+### Create a new instance of the Perfecta Client
+
+```ruby
+client = Perfecta::Client.new do |c|
+  c.email = 'email@ddress'
+  c.password = 'password'
+end
+```
+
+This will exchange the credentials for an API token and use this token
+for all subsequent calls.
+
+You can now use the client instance to query the API.
+
+### List all Campaign Reports
+
+```ruby
+p client.campaign_reports.inspect
+```
+
+### List all Ad Reports
+
+```ruby
+p client.ad_reports.inspect
+```
+
+### List all Conversion Reports
+
+```ruby
+p client.conversion_reports.inspect
+```
 
 ## Contributing
 
