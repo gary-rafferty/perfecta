@@ -22,39 +22,21 @@ module Perfecta
       url = "#{BASE_API_PATH}/reports/campaign_report"
       resp =  JSON.parse(RestClient.get(url, {Authorization: @token}))
 
-      retval = []
-      resp['report'].each do |report_data|
-        report = CampaignReport.new report_data
-        retval << report
-      end
-
-      retval
+      build_collection_of 'CampaignReport', resp['report']
     end
 
     def ad_reports
       url = "#{BASE_API_PATH}/reports/ad_report"
       resp =  JSON.parse(RestClient.get(url, {Authorization: @token}))
 
-      retval = []
-      resp['report'].each do |report_data|
-        report = AdReport.new report_data
-        retval << report
-      end
-
-      retval
+      build_collection_of 'AdReport', resp['report']
     end
 
     def conversion_reports
       url = "#{BASE_API_PATH}/reports/conversion_report"
       resp =  JSON.parse(RestClient.get(url, {Authorization: @token}))
 
-      retval = []
-      resp['report'].each do |report_data|
-        report = ConversionReport.new report_data
-        retval << report
-      end
-
-      retval
+      build_collection_of 'ConversionReport', resp['report']
     end
 
     private 
@@ -74,6 +56,17 @@ module Perfecta
       if json['status'] == 200
         json['token']
       end
+    end
+
+    def build_collection_of klass, data
+      retval = []
+
+      data.each do |d|
+        obj = Perfecta.const_get(klass.to_sym).new d
+        retval << obj
+      end
+
+      retval
     end
   end
 end
