@@ -28,8 +28,8 @@ module Perfecta
 
       json = JSON.parse resp
 
-      if json[:status] == 200
-        json[:token]
+      if json['status'] == 200
+        json['token']
       end
     end
   end
