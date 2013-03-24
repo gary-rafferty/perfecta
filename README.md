@@ -54,7 +54,7 @@ p client.conversion_reports.inspect
 ## TODO
 
 1. Flesh out the rest of the API
-2. Accept query parameters
+2. ~~Accept query parameters~~
 3. Error handling, specifically for when token expires
 4. Relationships and delegation between of objects
 
