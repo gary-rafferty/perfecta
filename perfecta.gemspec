@@ -8,8 +8,8 @@ Gem::Specification.new do |gem|
   gem.version       = Perfecta::VERSION
   gem.authors       = ["Gary Rafferty"]
   gem.email         = ["gary.rafferty@gmail.com"]
-  gem.description   = %q{Ruby API for the PerfectAudience Reporting API}
-  gem.summary       = %q{Ruby APU for the PerfectAudience Reporting API}
+  gem.description   = %q{Ruby client for the PerfectAudience Reporting API}
+  gem.summary       = %q{Ruby client for the PerfectAudience Reporting API}
   gem.homepage      = "https://github.com/gary-rafferty/perfecta"
 
   gem.files         = `git ls-files`.split($/)
