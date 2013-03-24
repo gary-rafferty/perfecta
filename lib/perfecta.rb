@@ -3,6 +3,8 @@ require "perfecta/api_resource"
 require "perfecta/campaign_report"
 require "perfecta/ad_report"
 require "perfecta/conversion_report"
+require "perfecta/site"
+require "perfecta/campaign"
 require "rest-client"
 require "json"
 
@@ -60,6 +62,46 @@ module Perfecta
       resp =  JSON.parse(RestClient.get(url, params))
 
       build_collection_of 'ConversionReport', resp
+    end
+
+    def sites
+      url = "#{BASE_API_PATH}/sites"
+
+      resp = JSON.parse(RestClient.get(url, Authorization: @token))
+
+      retval = []
+
+      resp['sites'].each {|s| retval << Site.new(s)}
+
+      retval
+    end
+
+    def site id
+      url = "#{BASE_API_PATH}/sites/#{id}"
+
+      resp = JSON.parse(RestClient.get(url, Authorization: @token))
+
+      Site.new resp['site']
+    end
+
+    def campaigns
+      url = "#{BASE_API_PATH}/campaigns"
+
+      resp = JSON.parse(RestClient.get(url, Authorization: @token))
+
+      retval = []
+
+      resp['campaigns'].each {|s| retval << Campaign.new(s)}
+
+      retval
+    end
+
+    def campaign id
+       url = "#{BASE_API_PATH}/campaigns/#{id}"
+
+      resp = JSON.parse(RestClient.get(url, Authorization: @token))
+
+      Site.new resp['campaign']
     end
 
     private
