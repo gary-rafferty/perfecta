@@ -51,6 +51,12 @@ p client.ad_reports.inspect
 p client.conversion_reports.inspect
 ```
 
+## TODO
+
+1. Flesh out the rest of the API
+2. Error handling, specifically for when token expires
+3. Relationships and delegation between of objects
+
 ## Contributing
 
 1. Fork it
