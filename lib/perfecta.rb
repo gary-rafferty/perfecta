@@ -11,6 +11,14 @@ module Perfecta
 
     BASE_API_PATH = 'https://api.perfectaudience.com'
 
+    ALLOWED_REPORT_PARAMS = [
+      :interval,
+      :start_date,
+      :end_date,
+      :site_id,
+      :campaign_id
+    ].freeze
+
     attr_accessor :email, :password, :token
 
     def initialize &block
@@ -18,28 +26,43 @@ module Perfecta
       @token = exchange_credentials_for_token
     end
 
-    def campaign_reports
+    def campaign_reports params = {}
       url = "#{BASE_API_PATH}/reports/campaign_report"
-      resp =  JSON.parse(RestClient.get(url, {Authorization: @token}))
 
-      build_collection_of 'CampaignReport', resp['report']
+      params.keep_if {|p| ALLOWED_REPORT_PARAMS.include? p}
+
+      params = {params: params}.merge! Authorization: @token
+
+      resp =  JSON.parse(RestClient.get(url, params))
+
+      build_collection_of 'CampaignReport', resp
     end
 
-    def ad_reports
+    def ad_reports params = {}
       url = "#{BASE_API_PATH}/reports/ad_report"
-      resp =  JSON.parse(RestClient.get(url, {Authorization: @token}))
 
-      build_collection_of 'AdReport', resp['report']
+      params.keep_if {|p| ALLOWED_REPORT_PARAMS.include? p}
+
+      params = {params: params}.merge! Authorization: @token
+
+      resp =  JSON.parse(RestClient.get(url, params))
+
+      build_collection_of 'AdReport', resp
     end
 
-    def conversion_reports
+    def conversion_reports params = {}
       url = "#{BASE_API_PATH}/reports/conversion_report"
-      resp =  JSON.parse(RestClient.get(url, {Authorization: @token}))
 
-      build_collection_of 'ConversionReport', resp['report']
+      params.keep_if {|p| ALLOWED_REPORT_PARAMS.include? p}
+
+      params = {params: params}.merge! Authorization: @token
+
+      resp =  JSON.parse(RestClient.get(url, params))
+
+      build_collection_of 'ConversionReport', resp
     end
 
-    private 
+    private
 
     def exchange_credentials_for_token
       authenticate
@@ -61,7 +84,9 @@ module Perfecta
     def build_collection_of klass, data
       retval = []
 
-      data.each do |d|
+      raise BadResponse unless data['status'] == 200
+
+      data['report'].each do |d|
         obj = Perfecta.const_get(klass.to_sym).new d
         retval << obj
       end
@@ -69,4 +94,6 @@ module Perfecta
       retval
     end
   end
+
+  class BadResponse < Exception; end
 end
