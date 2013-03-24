@@ -33,11 +33,7 @@ module Perfecta
     end
 
     def campaign_reports params = {}
-      url = "#{BASE_API_PATH}/reports/campaign_report"
-
-      params.keep_if {|p| ALLOWED_REPORT_PARAMS.include? p}
-
-      params = {params: params}.merge! Authorization: @token
+      url, params = build_report_url_and_params_for('campaign', params)
 
       resp =  JSON.parse(RestClient.get(url, params))
 
@@ -45,11 +41,7 @@ module Perfecta
     end
 
     def ad_reports params = {}
-      url = "#{BASE_API_PATH}/reports/ad_report"
-
-      params.keep_if {|p| ALLOWED_REPORT_PARAMS.include? p}
-
-      params = {params: params}.merge! Authorization: @token
+      url, params = build_report_url_and_params_for('ad', params)
 
       resp =  JSON.parse(RestClient.get(url, params))
 
@@ -57,11 +49,7 @@ module Perfecta
     end
 
     def conversion_reports params = {}
-      url = "#{BASE_API_PATH}/reports/conversion_report"
-
-      params.keep_if {|p| ALLOWED_REPORT_PARAMS.include? p}
-
-      params = {params: params}.merge! Authorization: @token
+      url, params = build_report_url_and_params_for('conversion', params)
 
       resp =  JSON.parse(RestClient.get(url, params))
 
@@ -168,6 +156,16 @@ module Perfecta
       end
 
       retval
+    end
+
+    def build_report_url_and_params_for type, params
+      url = "#{BASE_API_PATH}/reports/#{type}_report"
+
+      params.keep_if {|p| ALLOWED_REPORT_PARAMS.include? p}
+
+      params = {params: params}.merge! Authorization: @token
+
+      [url, params]
     end
   end
 
