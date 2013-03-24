@@ -10,6 +10,7 @@ require "perfecta/conversion"
 require "perfecta/segment"
 require "rest-client"
 require "json"
+require "active_support/inflector"
 
 module Perfecta
   class Client
@@ -68,103 +69,43 @@ module Perfecta
     end
 
     def sites
-      url = "#{BASE_API_PATH}/sites"
-
-      resp = JSON.parse(RestClient.get(url, Authorization: @token))
-
-      retval = []
-
-      resp['sites'].each {|s| retval << Site.new(s)}
-
-      retval
+      get_many 'sites'
     end
 
     def site id
-      url = "#{BASE_API_PATH}/sites/#{id}"
-
-      resp = JSON.parse(RestClient.get(url, Authorization: @token))
-
-      Site.new resp['site']
+      get_one 'site', id
     end
 
     def campaigns
-      url = "#{BASE_API_PATH}/campaigns"
-
-      resp = JSON.parse(RestClient.get(url, Authorization: @token))
-
-      retval = []
-
-      resp['campaigns'].each {|s| retval << Campaign.new(s)}
-
-      retval
+      get_many 'campaigns'
     end
 
     def campaign id
-       url = "#{BASE_API_PATH}/campaigns/#{id}"
-
-      resp = JSON.parse(RestClient.get(url, Authorization: @token))
-
-      Campaign.new resp['campaign']
+      get_one 'campaign', id
     end
 
     def ads
-      url = "#{BASE_API_PATH}/ads"
-
-      resp = JSON.parse(RestClient.get(url, Authorization: @token))
-
-      retval = []
-
-      resp['ads'].each {|s| retval << Ad.new(s)}
-
-      retval
+      get_many 'ads'
     end
 
     def ad id
-       url = "#{BASE_API_PATH}/ads/#{id}"
-
-      resp = JSON.parse(RestClient.get(url, Authorization: @token))
-
-      Ad.new resp['ad']
+      get_one 'ad', id
     end
 
     def conversions
-      url = "#{BASE_API_PATH}/conversions"
-
-      resp = JSON.parse(RestClient.get(url, Authorization: @token))
-
-      retval = []
-
-      resp['conversions'].each {|s| retval << Conversion.new(s)}
-
-      retval
+      get_many 'conversions'
     end
 
     def conversion id
-       url = "#{BASE_API_PATH}/conversions/#{id}"
-
-      resp = JSON.parse(RestClient.get(url, Authorization: @token))
-
-      Conversion.new resp['conversion']
+      get_one 'conversion', id
     end
 
     def segments
-      url = "#{BASE_API_PATH}/segments"
-
-      resp = JSON.parse(RestClient.get(url, Authorization: @token))
-
-      retval = []
-
-      resp['segments'].each {|s| retval << Segment.new(s)}
-
-      retval
+      get_many 'segments'
     end
 
     def segment id
-       url = "#{BASE_API_PATH}/segments/#{id}"
-
-      resp = JSON.parse(RestClient.get(url, Authorization: @token))
-
-      Segment.new resp['segment']
+      get_one 'segment', id
     end
 
     private
@@ -194,6 +135,36 @@ module Perfecta
       data['report'].each do |d|
         obj = Perfecta.const_get(klass.to_sym).new d
         retval << obj
+      end
+
+      retval
+    end
+
+    def get_one type, id
+      url = "#{BASE_API_PATH}/#{type.pluralize}/#{id}"
+
+      resp = JSON.parse(RestClient.get(url, Authorization: @token))
+
+      klass_name = type.capitalize
+      klass = Perfecta.const_get(klass_name.to_sym)
+
+      obj = klass.new resp[type]
+
+      obj
+    end
+
+    def get_many type
+      url = "#{BASE_API_PATH}/#{type}"
+
+      resp = JSON.parse(RestClient.get(url, Authorization: @token))
+
+      klass_name = type.capitalize.singularize
+      klass = Perfecta.const_get(klass_name.to_sym)
+
+      retval = []
+
+      resp[type].each do |obj|
+        retval << klass.new(obj)
       end
 
       retval
