@@ -81,6 +81,7 @@ p client.campaign('CAMPAIGN_ID').inspect
 2. ~~Accept query parameters~~
 3. Error handling, specifically for when token expires
 4. Relationships and delegation between of objects
+5. Get rid of all the duplication
 
 ## Contributing
 
