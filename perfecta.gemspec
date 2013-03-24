@@ -10,7 +10,7 @@ Gem::Specification.new do |gem|
   gem.email         = ["gary.rafferty@gmail.com"]
   gem.description   = %q{Ruby API for the PerfectAudience Reporting API}
   gem.summary       = %q{Ruby APU for the PerfectAudience Reporting API}
-  gem.homepage      = ""
+  gem.homepage      = "https://github.com/gary-rafferty/perfecta"
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
