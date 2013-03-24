@@ -1,5 +1,8 @@
 # Perfecta
 
+[![Build Status](https://travis-ci.org/gary-rafferty/perfecta.png)](https://travis-ci.org/gary-rafferty/perfecta)
+
+
 Ruby client for the Perfect Audience [reporting
 api](https://www.perfectaudience.com/docs#data_api_autoopen)
 
