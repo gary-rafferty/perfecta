@@ -101,7 +101,7 @@ module Perfecta
 
       resp = JSON.parse(RestClient.get(url, Authorization: @token))
 
-      Site.new resp['campaign']
+      Campaign.new resp['campaign']
     end
 
     private
