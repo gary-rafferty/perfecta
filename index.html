@@ -1,0 +1,216 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Perfecta by gary-rafferty</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/main.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+
+      <header>
+        <h1>Perfecta</h1>
+        <p>Ruby client for the PerfectAudience API</p>
+      </header>
+
+      <div id="banner">
+        <span id="logo"></span>
+
+        <a href="https://github.com/gary-rafferty/perfecta" class="button fork"><strong>View On GitHub</strong></a>
+        <div class="downloads">
+          <span>Downloads:</span>
+          <ul>
+            <li><a href="https://github.com/gary-rafferty/perfecta/zipball/master" class="button">ZIP</a></li>
+            <li><a href="https://github.com/gary-rafferty/perfecta/tarball/master" class="button">TAR</a></li>
+          </ul>
+        </div>
+      </div><!-- end banner -->
+
+    <div class="wrapper">
+      <nav>
+        <ul></ul>
+      </nav>
+      <section>
+        <h1>Perfecta</h1>
+
+<p>Ruby client for the Perfect Audience <a href="https://www.perfectaudience.com/docs#data_api_autoopen">reporting
+api</a></p>
+
+<h2>Installation</h2>
+
+<p>Add this line to your application's Gemfile:</p>
+
+<pre><code>gem 'perfecta'
+</code></pre>
+
+<p>And then execute:</p>
+
+<pre><code>$ bundle
+</code></pre>
+
+<p>Or install it yourself as:</p>
+
+<pre><code>$ gem install perfecta
+</code></pre>
+
+<h2>Usage</h2>
+
+<h3>Create a new instance of the Perfecta Client</h3>
+
+<div class="highlight"><pre><span class="n">client</span> <span class="o">=</span> <span class="ss">Perfecta</span><span class="p">:</span><span class="ss">:Client</span><span class="o">.</span><span class="n">new</span> <span class="k">do</span> <span class="o">|</span><span class="n">c</span><span class="o">|</span>
+  <span class="n">c</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="s1">'email@ddress'</span>
+  <span class="n">c</span><span class="o">.</span><span class="n">password</span> <span class="o">=</span> <span class="s1">'password'</span>
+<span class="k">end</span>
+</pre></div>
+
+<p>This will exchange the credentials for an API token and use this token
+for all subsequent calls.</p>
+
+<p>You can now use the client instance to query the API.</p>
+
+<h3> List all Campaign Reports</h3>
+
+<div class="highlight"><pre><span class="nb">p</span> <span class="n">client</span><span class="o">.</span><span class="n">campaign_reports</span><span class="o">.</span><span class="n">inspect</span>
+</pre></div>
+
+<p>Optional Query Parameters include</p>
+
+<table>
+<tr>
+<th>Name</th>
+<th align="center">Type</th>
+</tr>
+<tr>
+<td>interval</td>
+<td align="center">['today','yesterday','last_7_days','last_30_days','lifetime']</td>
+</tr>
+<tr>
+<td>start_date</td>
+<td align="center">'YYYY-MM-DD'</td>
+</tr>
+<tr>
+<td>end_date</td>
+<td align="center">'YYYY-MM-DD'</td>
+</tr>
+<tr>
+<td>site_id</td>
+<td align="center">'the_site_id'</td>
+</tr>
+<tr>
+<td>campaign_id</td>
+<td align="center">'the_site_id'</td>
+</tr>
+</table><p>and can be used by supplying a hash e.g.</p>
+
+<div class="highlight"><pre><span class="nb">p</span> <span class="n">client</span><span class="o">.</span><span class="n">campaign_reports</span><span class="p">(</span><span class="ss">interval</span><span class="p">:</span> <span class="s1">'yesterday'</span><span class="p">)</span><span class="o">.</span><span class="n">inspect</span>
+</pre></div>
+
+<h3>List all Ad Reports</h3>
+
+<div class="highlight"><pre><span class="nb">p</span> <span class="n">client</span><span class="o">.</span><span class="n">ad_reports</span><span class="o">.</span><span class="n">inspect</span>
+</pre></div>
+
+<p>Any of the additional query parameters from the above table can be supplied as a hash.</p>
+
+<h3>List all Conversion Reports</h3>
+
+<div class="highlight"><pre><span class="nb">p</span> <span class="n">client</span><span class="o">.</span><span class="n">conversion_reports</span><span class="o">.</span><span class="n">inspect</span>
+</pre></div>
+
+<p>Any of the additional query parameters from the above table can be supplied as a hash.</p>
+
+<h3>List all Sites</h3>
+
+<div class="highlight"><pre><span class="nb">p</span> <span class="n">client</span><span class="o">.</span><span class="n">sites</span><span class="o">.</span><span class="n">inspect</span>
+</pre></div>
+
+<h3>Show a single Site</h3>
+
+<div class="highlight"><pre><span class="nb">p</span> <span class="n">client</span><span class="o">.</span><span class="n">site</span><span class="p">(</span><span class="s1">'SITE_ID'</span><span class="p">)</span><span class="o">.</span><span class="n">inspect</span>
+</pre></div>
+
+<h3>List all Campaigns</h3>
+
+<div class="highlight"><pre><span class="nb">p</span> <span class="n">client</span><span class="o">.</span><span class="n">campaigns</span><span class="o">.</span><span class="n">inspect</span>
+</pre></div>
+
+<h3>Show a single Campaign</h3>
+
+<div class="highlight"><pre><span class="nb">p</span> <span class="n">client</span><span class="o">.</span><span class="n">campaign</span><span class="p">(</span><span class="s1">'CAMPAIGN_ID'</span><span class="p">)</span><span class="o">.</span><span class="n">inspect</span>
+</pre></div>
+
+<h3>List all Ads</h3>
+
+<div class="highlight"><pre><span class="nb">p</span> <span class="n">client</span><span class="o">.</span><span class="n">ads</span><span class="o">.</span><span class="n">inspect</span>
+</pre></div>
+
+<h3>Show a single Ad</h3>
+
+<div class="highlight"><pre><span class="nb">p</span> <span class="n">client</span><span class="o">.</span><span class="n">ad</span><span class="p">(</span><span class="s1">'AD_ID'</span><span class="p">)</span><span class="o">.</span><span class="n">inspect</span>
+</pre></div>
+
+<h3>List all Segments</h3>
+
+<div class="highlight"><pre><span class="nb">p</span> <span class="n">client</span><span class="o">.</span><span class="n">segments</span><span class="o">.</span><span class="n">inspect</span>
+</pre></div>
+
+<h3>Show a single Segment</h3>
+
+<div class="highlight"><pre><span class="nb">p</span> <span class="n">client</span><span class="o">.</span><span class="n">segment</span><span class="p">(</span><span class="s1">'SEGMENT_ID'</span><span class="p">)</span><span class="o">.</span><span class="n">inspect</span>
+</pre></div>
+
+<h3>List all Conversions</h3>
+
+<div class="highlight"><pre><span class="nb">p</span> <span class="n">client</span><span class="o">.</span><span class="n">conversions</span><span class="o">.</span><span class="n">inspect</span>
+</pre></div>
+
+<h3>Show a single Conversion</h3>
+
+<div class="highlight"><pre><span class="nb">p</span> <span class="n">client</span><span class="o">.</span><span class="n">conversion</span><span class="p">(</span><span class="s1">'CONVERSION_ID'</span><span class="p">)</span><span class="o">.</span><span class="n">inspect</span>
+</pre></div>
+
+<h2>TODO</h2>
+
+<ol>
+<li><del>Flesh out the rest of the API</del></li>
+<li><del>Accept query parameters</del></li>
+<li>Error handling, specifically for when token expires</li>
+<li>Relationships and delegation between of objects</li>
+<li><del>Get rid of all the duplication</del></li>
+</ol><h2>Contributing</h2>
+
+<ol>
+<li>Fork it</li>
+<li>Create your feature branch (<code>git checkout -b my-new-feature</code>)</li>
+<li>Commit your changes (<code>git commit -am 'Add some feature'</code>)</li>
+<li>Push to the branch (<code>git push origin my-new-feature</code>)</li>
+<li>Create new Pull Request</li>
+</ol>
+      </section>
+      <footer>
+        <p>Project maintained by <a href="https://github.com/gary-rafferty">gary-rafferty</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="http://twitter.com/#!/michigangraham">mattgraham</a></small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-39572556-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
