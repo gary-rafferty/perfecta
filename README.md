@@ -51,6 +51,30 @@ p client.ad_reports.inspect
 p client.conversion_reports.inspect
 ```
 
+### List all Sites
+
+```ruby
+p client.sites.inspect
+```
+
+### Show a single Site
+
+```ruby
+p client.site('SITE_ID').inspect
+```
+
+### List all Campaigns
+
+```ruby
+p client.campaigns.inspect
+```
+
+### Show a single Campaign
+
+```ruby
+p client.campaign('CAMPAIGN_ID').inspect
+```
+
 ## TODO
 
 1. Flesh out the rest of the API
