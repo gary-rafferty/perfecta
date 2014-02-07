@@ -3,6 +3,8 @@
 [![Build Status](https://travis-ci.org/malachaifrazier/perfecta.png)](https://travis-ci.org/malachaifrazier/perfecta)
 [![Coverage Status](https://coveralls.io/repos/gary-rafferty/perfecta/badge.png?branch=master)](https://coveralls.io/r/gary-rafferty/perfecta?branch=master)
 
+[![Code Climate](https://codeclimate.com/github/malachaifrazier/perfecta.png)](https://codeclimate.com/github/malachaifrazier/perfecta)
+
 Ruby client for the Perfect Audience [reporting
 api](https://www.perfectaudience.com/docs#data_api_autoopen)
 
