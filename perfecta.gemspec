@@ -21,5 +21,6 @@ Gem::Specification.new do |gem|
   gem.add_dependency "rest-client"
   gem.add_dependency "activesupport", "~> 3"
   gem.add_dependency "rake", "~> 0.9.2"
+  gem.add_dependency "json"
   gem.add_development_dependency "mocha"
 end
