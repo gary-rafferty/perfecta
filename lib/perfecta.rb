@@ -161,7 +161,7 @@ module Perfecta
     def build_report_url_and_params_for type, params
       url = "#{BASE_API_PATH}/reports/#{type}_report"
 
-      params.keep_if {|p| ALLOWED_REPORT_PARAMS.include? p}
+      params.delete_if {|p| !ALLOWED_REPORT_PARAMS.include? p}
 
       params = {:params => params}.merge! "Authorization".to_sym => @token
 
