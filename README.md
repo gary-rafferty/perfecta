@@ -1,6 +1,6 @@
 # Perfecta
 
-[![Build Status](https://travis-ci.org/gary-rafferty/perfecta.png)](https://travis-ci.org/gary-rafferty/perfecta)
+[![Build Status](https://travis-ci.org/malachaifrazier/perfecta.png)](https://travis-ci.org/malachaifrazier/perfecta)
 [![Coverage Status](https://coveralls.io/repos/gary-rafferty/perfecta/badge.png?branch=master)](https://coveralls.io/r/gary-rafferty/perfecta?branch=master)
 
 Ruby client for the Perfect Audience [reporting
