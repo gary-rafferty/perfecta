@@ -1,6 +1,6 @@
 require './test/test_helper.rb'
 
-class CampaignTest < MiniTest::Unit::TestCase
+class CampaignTest < Minitest::Test
 
   describe 'Campaign' do
 

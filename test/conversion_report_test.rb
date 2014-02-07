@@ -1,6 +1,6 @@
 require './test/test_helper.rb'
 
-class ConversionReportTest < MiniTest::Unit::TestCase
+class ConversionReportTest < Minitest::Test
 
   describe 'ConversionReport' do
 

@@ -1,6 +1,6 @@
 require './test/test_helper.rb'
 
-class AdReportTest < MiniTest::Unit::TestCase
+class AdReportTest < Minitest::Test
 
   describe 'AdReport' do
 

@@ -1,6 +1,6 @@
 require './test/test_helper.rb'
 
-class SiteTest < MiniTest::Unit::TestCase
+class SiteTest < Minitest::Test
 
   describe 'Site' do
 

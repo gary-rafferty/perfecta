@@ -1,14 +1,11 @@
 require './test/test_helper.rb'
 
-class PerfectaTest < MiniTest::Unit::TestCase
+class PerfectaTest < Minitest::Test
 
   describe 'Perfecta client' do
 
     before do
-      Perfecta::Client
-        .any_instance
-        .stubs(:exchange_credentials_for_token)
-        .returns('token')
+      Perfecta::Client.any_instance.stubs(:exchange_credentials_for_token).returns('token')
 
       @client = Perfecta::Client.new do |c|
         c.email = 'email@ddress'
