@@ -2,4 +2,6 @@ source 'https://rubygems.org'
 
 gemspec
 
-gem 'coveralls', require: false
+if ruby "1.8.7"
+	gem 'coveralls', :require => false
+end

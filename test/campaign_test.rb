@@ -1,11 +1,11 @@
-require_relative 'test_helper'
+require 'test_helper'
 
 class CampaignTest < MiniTest::Unit::TestCase
 
   describe 'Campaign' do
 
     before do
-      @attrs = {name: 'Campaign 1'}
+      @attrs = {:name => 'Campaign 1'}
       @report = Perfecta::Campaign.new @attrs
     end
 
