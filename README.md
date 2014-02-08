@@ -150,3 +150,7 @@ p client.conversion('CONVERSION_ID').inspect
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
+
+## Contributions
+
+* Support for Ruby-1.8.7 added by @malachaifrazier
