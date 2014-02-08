@@ -1,6 +1,6 @@
 # Perfecta
 
-[![Build Status](https://travis-ci.org/malachaifrazier/perfecta.png)](https://travis-ci.org/malachaifrazier/perfecta)
+[![Build Status](https://travis-ci.org/gary-rafferty/perfecta.png)](https://travis-ci.org/gary-rafferty/perfecta)
 [![Coverage Status](https://coveralls.io/repos/gary-rafferty/perfecta/badge.png?branch=master)](https://coveralls.io/r/gary-rafferty/perfecta?branch=master)
 
 [![Code Climate](https://codeclimate.com/github/malachaifrazier/perfecta.png)](https://codeclimate.com/github/malachaifrazier/perfecta)
