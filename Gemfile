@@ -2,4 +2,7 @@ source 'https://rubygems.org'
 
 gemspec
 
-gem 'coveralls', require: false
+group :development, :test do
+  gem 'minitest' 
+  gem 'coveralls', :require => false
+end
