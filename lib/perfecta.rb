@@ -116,16 +116,11 @@ module Perfecta
     end
 
     def build_collection_of klass, data
-      retval = []
-
       raise BadResponse unless data['status'] == 200
 
-      data['report'].each do |d|
-        obj = Perfecta.const_get(klass.to_sym).new d
-        retval << obj
+      data['report'].map do |d|
+        Perfecta.const_get(klass.to_sym).new d
       end
-
-      retval
     end
 
     def get_one type, id
@@ -149,13 +144,9 @@ module Perfecta
       klass_name = type.capitalize.singularize
       klass = Perfecta.const_get(klass_name.to_sym)
 
-      retval = []
-
-      resp[type].each do |obj|
-        retval << klass.new(obj)
+      resp[type].map do |obj|
+        klass.new(obj)
       end
-
-      retval
     end
 
     def build_report_url_and_params_for type, params
