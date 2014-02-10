@@ -35,7 +35,7 @@ module Perfecta
     def campaign_reports params = {}
       url, params = build_report_url_and_params_for('campaign', params)
 
-      resp =  JSON.parse(RestClient.get(url, params))
+      resp =  make_request url, params
 
       build_collection_of 'CampaignReport', resp
     end
@@ -43,7 +43,7 @@ module Perfecta
     def ad_reports params = {}
       url, params = build_report_url_and_params_for('ad', params)
 
-      resp =  JSON.parse(RestClient.get(url, params))
+      resp =  make_request url, params
 
       build_collection_of 'AdReport', resp
     end
@@ -51,7 +51,7 @@ module Perfecta
     def conversion_reports params = {}
       url, params = build_report_url_and_params_for('conversion', params)
 
-      resp =  JSON.parse(RestClient.get(url, params))
+      resp =  make_request url, params
 
       build_collection_of 'ConversionReport', resp
     end
@@ -126,7 +126,7 @@ module Perfecta
     def get_one type, id
       url = "#{BASE_API_PATH}/#{type.pluralize}/#{id}"
 
-      resp = JSON.parse(RestClient.get(url, "Authorization".to_sym => @token))
+      resp = make_request url, "Authorization".to_sym => @token
 
       klass_name = type.capitalize
       klass = Perfecta.const_get(klass_name.to_sym)
@@ -139,7 +139,7 @@ module Perfecta
     def get_many type
       url = "#{BASE_API_PATH}/#{type}"
 
-      resp = JSON.parse(RestClient.get(url, "Authorization".to_sym => @token))
+      resp = make_request url, "Authorization".to_sym => @token
 
       klass_name = type.capitalize.singularize
       klass = Perfecta.const_get(klass_name.to_sym)
@@ -157,6 +157,10 @@ module Perfecta
       params = {:params => params}.merge! "Authorization".to_sym => @token
 
       [url, params]
+    end
+
+    def make_request url, params = nil
+      JSON.parse(RestClient.get(url, params))
     end
   end
 
