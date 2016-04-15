@@ -17,10 +17,10 @@ Gem::Specification.new do |gem|
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = ["lib"]
 
-  gem.add_dependency "mime-types", "~> 1.25.1"
+  gem.add_dependency "mime-types", ">= 1.25.1"
   gem.add_dependency "rest-client"
-  gem.add_dependency "activesupport", "~> 3"
-  gem.add_dependency "rake", "~> 0.9.2"
+  gem.add_dependency "activesupport", ">= 3"
+  gem.add_dependency "rake", ">= 0.9.2"
   gem.add_dependency "json"
   gem.add_development_dependency "mocha"
 end
