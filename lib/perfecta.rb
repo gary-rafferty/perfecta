@@ -64,32 +64,32 @@ module Perfecta
       get_one 'site', id
     end
 
-    def campaigns
-      get_many 'campaigns'
+    def campaigns params = {}
+      get_many 'campaigns', params
     end
 
     def campaign id
       get_one 'campaign', id
     end
 
-    def ads
-      get_many 'ads'
+    def ads params = {}
+      get_many 'ads', params
     end
 
     def ad id
       get_one 'ad', id
     end
 
-    def conversions
-      get_many 'conversions'
+    def conversions params = {}
+      get_many 'conversions', params
     end
 
     def conversion id
       get_one 'conversion', id
     end
 
-    def segments
-      get_many 'segments'
+    def segments params = {}
+      get_many 'segments', params
     end
 
     def segment id
@@ -136,10 +136,14 @@ module Perfecta
       obj
     end
 
-    def get_many type
+    def get_many type, params = {}
       url = "#{BASE_API_PATH}/#{type}"
 
-      resp = make_request url, "Authorization".to_sym => @token
+      params.delete_if {|p| ![:site_id].include? p}
+
+      params = {params: params}.merge! "Authorization".to_sym => @token
+
+      resp = make_request url, params
 
       klass_name = type.capitalize.singularize
       klass = Perfecta.const_get(klass_name.to_sym)
