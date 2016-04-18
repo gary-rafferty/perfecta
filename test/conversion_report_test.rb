@@ -1,11 +1,11 @@
-require './test/test_helper.rb'
+require_relative 'test_helper'
 
-class ConversionReportTest < Minitest::Test
+class ConversionReportTest < MiniTest::Unit::TestCase
 
   describe 'ConversionReport' do
 
     before do
-      @attrs = {:conversion_name => 'Conversion 1', :conversion_id => 123}
+      @attrs = {conversion_name: 'Conversion 1', conversion_id: 123}
       @report = Perfecta::ConversionReport.new @attrs
     end
 
