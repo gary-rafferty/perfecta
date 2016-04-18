@@ -1,6 +1,6 @@
 require_relative 'test_helper'
 
-class CampaignReportTest < MiniTest::Unit::TestCase
+class CampaignReportTest < MiniTest::Test
 
   describe 'CampaignReport' do
 

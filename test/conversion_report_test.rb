@@ -1,6 +1,6 @@
 require_relative 'test_helper'
 
-class ConversionReportTest < MiniTest::Unit::TestCase
+class ConversionReportTest < MiniTest::Test
 
   describe 'ConversionReport' do
 

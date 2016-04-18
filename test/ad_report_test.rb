@@ -1,6 +1,6 @@
 require_relative 'test_helper'
 
-class AdReportTest < MiniTest::Unit::TestCase
+class AdReportTest < MiniTest::Test
 
   describe 'AdReport' do
 

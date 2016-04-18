@@ -1,6 +1,6 @@
 require_relative 'test_helper'
 
-class PerfectaTest < MiniTest::Unit::TestCase
+class PerfectaTest < MiniTest::Test
 
   describe 'Perfecta client' do
 

@@ -1,6 +1,6 @@
 require_relative 'test_helper'
 
-class SiteTest < MiniTest::Unit::TestCase
+class SiteTest < MiniTest::Test
 
   describe 'Site' do
 
