@@ -1,11 +1,11 @@
-require './test/test_helper.rb'
+require_relative 'test_helper'
 
-class AdReportTest < Minitest::Test
+class AdReportTest < MiniTest::Test
 
   describe 'AdReport' do
 
     before do
-      @attrs = {:ad_name => 'Ad 1', :ad_id => 123}
+      @attrs = {ad_name: 'Ad 1', ad_id: 123}
       @report = Perfecta::AdReport.new @attrs
     end
 

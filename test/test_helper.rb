@@ -1,8 +1,7 @@
 $:.unshift(File.join(File.dirname(__FILE__),'..','lib'))
 
-require 'rubygems'
-require 'minitest/autorun'
 require 'minitest/spec'
+require 'minitest/autorun'
 require 'mocha/setup'
 require 'perfecta'
 

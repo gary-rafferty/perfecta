@@ -1,11 +1,11 @@
-require './test/test_helper.rb'
+require_relative 'test_helper'
 
-class SiteTest < Minitest::Test
+class SiteTest < MiniTest::Test
 
   describe 'Site' do
 
     before do
-      @attrs = {:name => 'Site 1'}
+      @attrs = {name: 'Site 1'}
       @report = Perfecta::Site.new @attrs
     end
 

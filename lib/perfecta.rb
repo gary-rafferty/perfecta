@@ -104,7 +104,7 @@ module Perfecta
 
     def authenticate
       url = "#{BASE_API_PATH}/auth"
-      data = {:email => @email, :password => @password}
+      data = {email: @email, password: @password}
 
       resp = RestClient.post(url, data)
 
@@ -126,7 +126,7 @@ module Perfecta
     def get_one type, id
       url = "#{BASE_API_PATH}/#{type.pluralize}/#{id}"
 
-      resp = make_request url, "Authorization".to_sym => @token
+      resp = make_request url, Authorization: @token
 
       klass_name = type.capitalize
       klass = Perfecta.const_get(klass_name.to_sym)
@@ -141,7 +141,7 @@ module Perfecta
 
       params.delete_if {|p| ![:site_id].include? p}
 
-      params = {params: params}.merge! "Authorization".to_sym => @token
+      params = {params: params}.merge! Authorization: @token
 
       resp = make_request url, params
 
@@ -156,9 +156,9 @@ module Perfecta
     def build_report_url_and_params_for type, params
       url = "#{BASE_API_PATH}/reports/#{type}_report"
 
-      params.delete_if {|p| !ALLOWED_REPORT_PARAMS.include? p}
+      params.keep_if {|p| ALLOWED_REPORT_PARAMS.include? p}
 
-      params = {:params => params}.merge! "Authorization".to_sym => @token
+      params = {params: params}.merge! Authorization: @token
 
       [url, params]
     end
