@@ -151,6 +151,7 @@ p client.conversion('CONVERSION_ID').inspect
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
 
-## Contributions
+## Contributors
 
-* Support for Ruby-1.8.7 added by @malachaifrazier
+* [@malachaifrazier](https://github.com/gary-rafferty/perfecta/commits?author=malachaifrazier)
+* [@alfie-max](https://github.com/gary-rafferty/perfecta/commits?author=alfie-max)
